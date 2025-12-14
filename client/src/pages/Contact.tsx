@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/ContactForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Phone, Mail, MessageCircle, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, MessageCircle, Clock, Globe } from "lucide-react";
 import { SiFacebook, SiInstagram, SiLinkedin } from "react-icons/si";
 
 const contactInfo = [
@@ -40,7 +40,7 @@ const socialLinks = [
   {
     icon: SiFacebook,
     label: "Facebook",
-    href: "https://facebook.com/Lys.Intense",
+    href: "https://www.facebook.com/laboratoiresLRS",
     handle: "@Lys.Intense",
   },
   {
@@ -49,68 +49,66 @@ const socialLinks = [
     href: "https://instagram.com/lys_intense",
     handle: "@lys_intense",
   },
-  {
-    icon: SiLinkedin,
-    label: "LinkedIn",
-    href: "https://linkedin.com/company/laboratoires-reunis-de-soin",
-    handle: "@Laboratoires Réunis de Soin",
-  },
+  // {
+  //   icon: SiLinkedin,
+  //   label: "LinkedIn",
+  //   href: "https://linkedin.com/company/laboratoires-reunis-de-soin",
+  //   handle: "@Laboratoires Réunis de Soin",
+  // },
 ];
 
 export default function Contact() {
   return (
-    <div className="min-h-screen pt-20 md:pt-24" data-testid="page-contact">
-      <section className="py-12 md:py-20 bg-gradient-to-b from-primary/5 to-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6" data-testid="text-contact-title">
-              Contactez-nous
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed" data-testid="text-contact-subtitle">
-              Une question, une suggestion ou une demande de partenariat ? N'hésitez pas à nous contacter.
-            </p>
-          </div>
+    <div className="min-h-screen pt-20 md:pt-24 bg-gradient-to-b from-purple-50/50 via-white to-pink-50/30" data-testid="page-contact">
+      {/* Elegant header */}
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 via-pink-600/5 to-indigo-600/5" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-purple-700 via-pink-600 to-indigo-700 bg-clip-text text-transparent mb-8">
+            Contactez-nous
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto font-light">
+            Une question, une suggestion ou une demande de partenariat ?<br />
+            Notre équipe est à votre écoute.
+          </p>
         </div>
       </section>
 
-      <section className="py-12 md:py-20 bg-background">
+      {/* Main content – premium two-column layout */}
+      <section className="py-20 md:py-28 bg-white/70 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-            <div>
-              <Card data-testid="card-contact-form">
-                <CardHeader>
-                  <CardTitle>Envoyez-nous un message</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ContactForm />
-                </CardContent>
-              </Card>
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+            {/* Form – enhanced from ContactForm component (already premium) */}
+            <div className="order-2 lg:order-1">
+              <ContactForm />
             </div>
 
-            <div className="space-y-8">
+            {/* Contact info & social – refined with subtle premium touches */}
+            <div className="space-y-12 order-1 lg:order-2">
+              {/* Contact details */}
               <div>
-                <h2 className="text-xl font-semibold text-foreground mb-6" data-testid="text-contact-info-title">
-                  Informations de contact
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent mb-8">
+                  Nos coordonnées
                 </h2>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {contactInfo.map((info) => (
-                    <div key={info.label} className="flex items-start gap-4" data-testid={`contact-info-${info.label.toLowerCase()}`}>
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                        <info.icon className="w-5 h-5 text-primary" />
+                    <div key={info.label} className="flex items-start gap-5 group" data-testid={`contact-info-${info.label.toLowerCase()}`}>
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600/10 to-pink-600/10 flex items-center justify-center shadow-md group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                        <info.icon className="w-6 h-6 text-purple-600" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-muted-foreground">{info.label}</p>
+                        <p className="text-sm font-medium text-gray-600">{info.label}</p>
                         {info.href ? (
                           <a 
                             href={info.href} 
                             target={info.href.startsWith("http") ? "_blank" : undefined}
                             rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                            className="text-foreground hover:text-primary transition-colors"
+                            className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
                           >
                             {info.value}
                           </a>
                         ) : (
-                          <p className="text-foreground">{info.value}</p>
+                          <p className="text-lg font-semibold text-foreground">{info.value}</p>
                         )}
                       </div>
                     </div>
@@ -118,8 +116,9 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* Social links – premium glass cards */}
               <div>
-                <h2 className="text-xl font-semibold text-foreground mb-6" data-testid="text-social-title">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent mb-8">
                   Suivez-nous
                 </h2>
                 <div className="space-y-4">
@@ -129,14 +128,14 @@ export default function Contact() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 rounded-lg bg-card border border-card-border hover-elevate transition-all"
+                      className="flex items-center gap-5 p-5 rounded-2xl bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-md border border-white/50 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 group"
                       data-testid={`link-social-${social.label.toLowerCase()}`}
                     >
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                        <social.icon className="w-5 h-5 text-primary" />
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <social.icon className="w-7 h-7 text-purple-600" />
                       </div>
                       <div>
-                        <p className="font-medium text-foreground">{social.label}</p>
+                        <p className="font-semibold text-foreground text-lg">{social.label}</p>
                         <p className="text-sm text-muted-foreground">{social.handle}</p>
                       </div>
                     </a>
@@ -144,11 +143,15 @@ export default function Contact() {
                 </div>
               </div>
 
-              <Card className="bg-primary text-primary-foreground">
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">Distribution internationale</h3>
-                  <p className="text-sm text-primary-foreground/80 leading-relaxed">
-                    Nous distribuons nos produits en Tunisie, Libye, Algérie et Afrique de l'Ouest. 
+              {/* Distribution card – premium accent */}
+              <Card className="bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-600 text-white shadow-2xl border-0">
+                <CardContent className="pt-8 pb-10 px-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <Globe className="w-10 h-10" />
+                    <h3 className="text-2xl font-bold">Distribution internationale</h3>
+                  </div>
+                  <p className="text-white/90 text-lg leading-relaxed">
+                    Nous distribuons nos produits en Tunisie, Libye, Algérie et Afrique de l’Ouest.<br />
                     Pour les demandes de partenariat ou de distribution, contactez-nous directement.
                   </p>
                 </CardContent>

@@ -1,56 +1,66 @@
+// 
+
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-900 via-indigo-900 to-pink-900"
       data-testid="hero-section"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/80" />
+      {/* Subtle depth overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
       
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-500" />
+      {/* Very soft glow orbs – minimal and elegant */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pink-500 rounded-full filter blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500 rounded-full filter blur-3xl" />
       </div>
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.3)_100%)]" />
-
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
-          <Sparkles className="h-4 w-4 text-orange-300" />
-          <span className="text-sm text-white/90 font-medium">Depuis 2009 en Tunisie</span>
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-20">
+        {/* Refined badge – premium and discreet */}
+        <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 backdrop-blur-lg border border-white/20 mb-12 mt-20">
+          <span className="text-sm font-medium text-white/90 tracking-wide">Fabrication 100% Tunisienne depuis 2009</span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight" data-testid="text-hero-title">
-          LYS INTENSE
-          <span className="block text-2xl sm:text-3xl md:text-4xl font-light mt-2 text-white/90">
-            Une Histoire de Passion
+        {/* Title – luxurious typography */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white leading-tight tracking-tight mb-6">
+          LYS
+          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-pink-200 via-white to-purple-200 drop-shadow-lg">
+            INTENSE
           </span>
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed" data-testid="text-hero-description">
-          Nous voulons tous une apparence attractive et soignée. LYS INTENSE propose des produits de haute qualité pour tous les âges et tous les types de peau et cheveux, du soin quotidien aux gammes spécialisées.
+        <p className="text-2xl sm:text-3xl md:text-4xl font-light text-white/90 mt-6 tracking-wide">
+          Une Histoire de Passion
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        {/* Description – elegant spacing */}
+        <p className="mt-12 text-lg sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
+          Des produits de haute qualité pour tous les âges et tous les types de peau et cheveux.<br />
+          Soins quotidiens raffinés, formulés avec passion pour sublimer votre beauté naturelle.
+        </p>
+
+        {/* Buttons – premium size and style (not too big) */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6  mb-10">
           <Link href="/produits">
             <Button 
               size="lg" 
-              className="bg-white text-primary hover:bg-white/90 font-semibold px-8 group"
+              className="bg-white text-purple-900 hover:bg-white/95 font-semibold px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 group"
               data-testid="button-discover-products"
             >
               Découvrir nos produits
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1.5" />
             </Button>
           </Link>
+
           <Link href="/a-propos">
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-medium px-8"
+              className="border-white/50 text-white hover:bg-white/10 hover:border-white/70 backdrop-blur-sm font-medium px-8 py-4 rounded-full transition-all duration-500"
               data-testid="button-about-us"
             >
               En savoir plus
@@ -59,9 +69,10 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-1">
-          <div className="w-1 h-2 bg-white/50 rounded-full" />
+      {/* Discreet scroll indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <div className="w-6 h-12 rounded-full border border-white/30 flex items-start justify-center pt-2">
+          <div className="w-1 h-3 bg-white/60 rounded-full animate-bounce" />
         </div>
       </div>
     </section>
