@@ -1,37 +1,23 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { products, type Product, type Category } from "@shared/schema";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getProducts(): Promise<Product[]>;
+  getProductsByCategory(category: Category): Promise<Product[]>;
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<string, User>;
+  private productList: Product[];
 
   constructor() {
-    this.users = new Map();
+    this.productList = products;
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getProducts(): Promise<Product[]> {
+    return this.productList;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async getProductsByCategory(category: Category): Promise<Product[]> {
+    return this.productList.filter((product) => product.category === category);
   }
 }
 
